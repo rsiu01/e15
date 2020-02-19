@@ -10,7 +10,9 @@ $inputString = $_POST['inputString'];
 
 function isPalindrome($inputString)
 {
-    if (strrev($inputString)==$inputString) {
+    if ($inputString==null) {
+        return 'No';
+    } elseif (strrev($inputString)==$inputString) {
         return 'Yes';
     } else {
         return 'No';
