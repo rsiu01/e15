@@ -1,52 +1,20 @@
 <?php
 
+require 'StringProcessor.php';
+
 session_start();
 
 $inputString = $_POST['inputString'];
 
+$stringProcessor = new StringProcessor($inputString);
 
 
 
 
-function isPalindrome($inputString)
-{
-    if ($inputString==null) {
-        return 'No';
-    } elseif (strrev($inputString)==$inputString) {
-        return 'Yes';
-    } else {
-        return 'No';
-    }
-}
 
-function isBigWord($inputString)
-{
-    if (strlen($inputString) >7) {
-        return 'Yes';
-    } else {
-        return 'No';
-    }
-}
-
-
-function countVowel($inputString)
-{
-    // array to store vowels
-    $vowelArray = array('A','E','I','O','U','a','e','i','o','u');
-
-    $count = 0;
-    for ($i = 0; $i < strlen($inputString); $i++) {
-        if (in_array($inputString[$i], $vowelArray) == true) {
-            $count++;
-        }
-    }
-    
-    return $count;
-}
-
-$isBigWordResult = isBigWord($inputString);
-$isPalindromeResult = isPalindrome($inputString);
-$countVowelResult = countVowel($inputString);
+$isBigWordResult = $stringProcessor->isBigWord();
+$isPalindromeResult = $stringProcessor->isPalindrome();
+$countVowelResult = $stringProcessor->countVowel();
 
 $_SESSION['results'] = [
     'isBigWord' => $isBigWordResult,
