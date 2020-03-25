@@ -39,11 +39,11 @@ section#main {
 
 header {
     text-align: center;
-    margin-top: 20px;
+    margin: auto;
 }
 
 #logo {
-    width: 316px;
+    width: 800px;
 }
 
 footer {
