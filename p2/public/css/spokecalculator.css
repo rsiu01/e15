@@ -124,6 +124,7 @@ legend {
     display: block;
     margin-top: 5px;
     margin-bottom: 5px;
+    margin: auto;
     text-align: left;
     font-size: 1.2rem;
     letter-spacing: .75px;
@@ -139,7 +140,6 @@ select {
     display: block;
     width: 100%;
     font-size: 1.5rem;
-    text-align: left;
     padding: 3px;
     font-family: Consolas, Courier, monospace;
     border: 1px solid #ccc;
