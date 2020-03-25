@@ -1,16 +1,22 @@
 @extends('layouts.master')
 
 @section('title')
-    Book Library...
+    All Books
 @endsection
 
+@section('head')
+    <link href='/css/books/index.css' rel='stylesheet'>
+@endsection
 
 @section('content')
-    @if(count($books) == 0)
+    <h1>All Books</h1>
+
+    @if(count($books) == 0) 
         No books have been added yet...
     @else
-        @foreach ($books as $book)
-           {{ $book['title'] }} 
+        @foreach($books as $slug => $book)
+            <a href='/books/{{ $slug }}'>
+            <img class='cover' src='{{ $book['cover_url'] }}'></a>
         @endforeach
     @endif
 @endsection

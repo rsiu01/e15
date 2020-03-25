@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PageController@welcome');
+
+// route for form spoke calculator form submission
+Route::get('/calculate', 'SpokeController@calculate');
