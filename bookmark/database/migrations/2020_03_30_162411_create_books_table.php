@@ -1,0 +1,56 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateBooksTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('books', function (Blueprint $table) {
+            $table->bigIncrements('id');
+
+            $table->timestamps();
+            
+            // slug VARCHAR
+            $table->string('slug');
+
+            // title VARCHAR
+            $table->string('title');
+
+            // author VARCHAR
+            $table->string('author');
+
+            // published_year TINYINT
+            $table->tinyInteger('published_year');
+
+            // cover_url VARCHAR
+            $table->string('cover_url');
+
+            // info_url VARCHAR
+            $table->string('info_url');
+
+            // purchase_url VARCHAR
+            $table->string('purchase_url');
+
+            // description TEXT
+            $table->text('description')->nullable();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('books');
+    }
+}
