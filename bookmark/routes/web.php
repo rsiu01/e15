@@ -1,5 +1,11 @@
 <?php
 
+
+/**
+ * Practice
+ */
+Route::any('/practice/{n?}', 'PracticeController@index');
+
 Route::get('/debug', function () {
     $debug = [
         'Environment' => App::environment(),

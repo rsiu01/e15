@@ -28,7 +28,7 @@ class CreateBooksTable extends Migration
             $table->string('author');
 
             // published_year TINYINT
-            $table->tinyInteger('published_year');
+            $table->smallInteger('published_year');
 
             // cover_url VARCHAR
             $table->string('cover_url');
