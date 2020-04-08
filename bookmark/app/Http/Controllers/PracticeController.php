@@ -8,20 +8,15 @@ use Str;
 
 class PracticeController extends Controller
 {
+
     /**
      * Demonstrates deleting data
      */
     public function practice7()
     {
-        # First get a book to delete
-        $book = Book::where('author', '=', 'F. Scott Fitzgerald')->first();
-
-        if (!$book) {
-            dump('Did not delete- Book not found.');
-        } else {
-            $book->delete();
-            dump('Deletion complete; check the database to see if it worked...');
-        }
+        $book = Book::where('author', '=', 'Dr. Seuss')->get();
+        $book->delete();
+        dump('Book deleted.');
     }
     
     /**
