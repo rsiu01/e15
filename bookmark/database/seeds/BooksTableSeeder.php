@@ -49,7 +49,7 @@ class BooksTableSeeder extends Seeder
 
         $faker = Faker\Factory::create();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $book = new Book();
 
             $title = $faker->words(rand(3, 6), true);

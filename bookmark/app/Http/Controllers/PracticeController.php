@@ -8,15 +8,84 @@ use Str;
 
 class PracticeController extends Controller
 {
+    public function practice11()
+    {
+        $books = Book::all();
+        echo $books;
+    }
+    /**
+    * Example comparing filtering on the query vs. the collection
+    */
+    public function practice10()
+    {
+        # Collection
+        $books = Book::where('author', 'F. Scott Fitzgerald')->get();
+
+        # Run the `first` method on the Collection to get a single book object
+        dump($books->first());
+
+        # Compare the above to here where the `first` method is part of the Eloquent query
+        $results = Book::where('author', 'F. Scott Fitzgerald')->first();
+        dump($results);
+
+        # Both examples above yield the same results using different approaches
+    }
+
+    /**
+    * Example of looping through a Collection and
+    * accessing the data as an array or object
+    */
+    public function practice9()
+    {
+        $books = Book::all();
+
+        # Loop through the Collection
+        foreach ($books as $book) {
+            # Data can be accessed using array notation:
+            dump($book['title']);
+
+            # Or object notation:
+            //dump($book->title);
+        }
+    }
+
+    /**
+    * Example queries that return Collections
+    */
+    public function practice8()
+    {
+        # The following queries return a Book object
+        //$results = Book::find(1);
+        //$results = Book::orderBy('title')->first();
+
+        # Yields a collection of multiple books
+        //$results = Book::all();
+        //$results = Book::orderBy('title')->get();
+        
+        # Should match 1 book; yields a Collection of 1 Book
+        //$results = Book::where('author', 'F. Scott Fitzgerald')->get();
+
+        # Should match 0 books; yields an empty Collection
+        //$results = Book::where('author', 'Virginia Wolf')->get();
+        
+        # Even though we limit it to 1 book, we're using the `get` fetch method so we get a Collection (of 1 Book)
+        //$results = Book::limit(1)->get();
+    }
 
     /**
      * Demonstrates deleting data
      */
     public function practice7()
     {
-        $book = Book::where('author', '=', 'Dr. Seuss')->get();
-        $book->delete();
-        dump('Book deleted.');
+        # First get a book to delete
+        $book = Book::where('author', '=', 'F. Scott Fitzgerald')->first();
+
+        if (!$book) {
+            dump('Did not delete- Book not found.');
+        } else {
+            $book->delete();
+            dump('Deletion complete; check the database to see if it worked...');
+        }
     }
     
     /**
@@ -105,7 +174,7 @@ class PracticeController extends Controller
     {
         //dump(Str::plural('mouse'));
 
-        //dump(Book::find(3));
+        dump(Book::find(3));
         dump(Book::all()->toArray());
     }
 

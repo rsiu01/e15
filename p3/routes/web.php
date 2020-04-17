@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.welcome');
 });
 
 Route::get('/debug', function () {
@@ -41,3 +41,9 @@ Route::get('/debug', function () {
 
     dump($debug);
 });
+
+ /**
+    * Readings
+    */
+    
+    Auth::routes();
