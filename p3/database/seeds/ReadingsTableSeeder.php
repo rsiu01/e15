@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Readings;
+use App\Reading;
 
 class ReadingsTableSeeder extends Seeder
 {
@@ -16,15 +16,15 @@ class ReadingsTableSeeder extends Seeder
         $faker = Faker\Factory::create();
 
         for ($i = 0; $i < 100; $i++) {
-            $Readings = new Readings();
+            $Reading = new Reading();
 
-            $Readings->device = $faker->numberBetween($min=0, $max=20);
+            $Reading->device = $faker->numberBetween($min=0, $max=20);
 
-            $Readings->temperature = $faker->randomFloat($nbMaxDecimals = 2, $min= 36, $max=38);
+            $Reading->temperature = $faker->randomFloat($nbMaxDecimals = 2, $min= 36, $max=38);
 
-            $Readings->humidity = $faker->randomFloat($nbMaxDecimals = 2, $min=50, $max=98);
+            $Reading->humidity = $faker->randomFloat($nbMaxDecimals = 2, $min=50, $max=98);
 
-            $Readings->save();
+            $Reading->save();
         }
     }
 }
