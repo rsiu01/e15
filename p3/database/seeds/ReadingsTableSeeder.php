@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Reading;
+use App\Device;
 
 class ReadingsTableSeeder extends Seeder
 {
@@ -18,7 +19,10 @@ class ReadingsTableSeeder extends Seeder
         for ($i = 0; $i < 100; $i++) {
             $Reading = new Reading();
 
-            $Reading->device = $faker->numberBetween($min=0, $max=20);
+            # Find that device in the devices table
+            $device = Device::where('freezer', '=', ($faker->numberBetween($min=1, $max=20)))->first();
+
+            $Reading->device()->associate($device);
 
             $Reading->temperature = $faker->randomFloat($nbMaxDecimals = 2, $min= 36, $max=38);
 

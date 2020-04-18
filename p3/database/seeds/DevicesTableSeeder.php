@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Device;
 
 class DevicesTableSeeder extends Seeder
 {
@@ -11,7 +12,7 @@ class DevicesTableSeeder extends Seeder
      */
     public function run()
     {
-        for ($i = 0; $i < 21; $i++) {
+        for ($i = 1; $i < 30; $i++) {
             $Device = new Device();
 
             $Device->freezer = $i;

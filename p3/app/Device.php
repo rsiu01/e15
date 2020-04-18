@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Device extends Model
 {
-    //
+    public function readings()
+    {
+        # Device has many Readings
+        # Define a one-to-many relationship.
+        return $this->hasMany('App\Reading');
+    }
 }

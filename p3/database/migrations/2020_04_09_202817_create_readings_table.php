@@ -23,7 +23,7 @@ class CreateReadingsTable extends Migration
             $table->timestamps();
             
             # each sensor device will have a unique integer id
-            $table->Integer('device');
+            #$table->Integer('device');
             
             $table->decimal('temperature');
 
