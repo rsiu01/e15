@@ -7,6 +7,11 @@ use App\Reading;
 
 class ReadingController extends Controller
 {
+    public function __construct()
+    {
+        // We set the guard api as default driver
+        auth()->setDefaultDriver('api');
+    }
     /**
      * GET /readings
      * Show all the readings in the database
