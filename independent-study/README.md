@@ -138,14 +138,13 @@ ReadingController@store Method:
 	}
 
 
+Below is a screenshot of the readings table to verify that it storings the data that the Adafruit Feather Huzzah board is sending to my laravel application. 
 
-		
 
+![database readings table](images/readings.png "Values stored in readings table")
 
 I had hoped I would get Api with authentication working, but I can't seem to figure it out. So far I looked into the following sources: 
 
 * https://www.toptal.com/laravel/restful-laravel-api-tutorial
 
 * https://laravel.com/docs/7.x/authentication#introduction
-
-![database readings table](images/readings.png "Values stored in readings table")
