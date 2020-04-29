@@ -16,13 +16,13 @@ class CreateDevicesTable extends Migration
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            # there will be one sensing device per freezer; we have 22 freezers
-            # tinyint: 0 to 255
-            $table->unsignedTinyInteger('freezer');
+            # there will be unique identifier for each device
+            $table->string('slug');
             $table->text('description')->nullable();
             $table->float('low_temperature');
             $table->float('high_temperature');
             $table->float('calibration_offset');
+            $table->string('location');
             $table->boolean('alarm');
         });
     }

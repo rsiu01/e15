@@ -15,13 +15,15 @@ class DevicesTableSeeder extends Seeder
         for ($i = 1; $i < 30; $i++) {
             $Device = new Device();
 
-            $Device->freezer = $i;
+            $Device->slug = $i;
 
             $Device->low_temperature = 35;
 
             $Device->high_temperature = 39;
 
             $Device->calibration_offset = 0;
+
+            $Device->location = 'N/A';
 
             $Device->alarm = true;
 

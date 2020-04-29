@@ -113,6 +113,8 @@ Going to based the code off [source](https://github.com/bkolicoski/arduino-larav
 
 Instead of writing to `.txt` file, I'm going to try to incorporate writing to a database. 
 
+Api with auth: https://www.toptal.com/laravel/restful-laravel-api-tutorial
+
 ### Laravel Charts: to visualize that data coming in from Arduino
 
 [Package](https://packagist.org/packages/laraveldaily/laravel-charts)

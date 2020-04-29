@@ -29,5 +29,9 @@
 ## Outside resources
 *Your list of outside resources go here*
 
+https://www.nicepng.com/maxp/u2w7t4r5w7q8i1t4/
+
+https://www.w3schools.com/charsets/ref_utf_letterlike.asp
+
 ## Notes for instructor
 *Any notes for me to refer to while grading; if none, omit this section*

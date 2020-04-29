@@ -42,8 +42,32 @@ Route::get('/debug', function () {
     dump($debug);
 });
 
- /**
-    * Readings
-    */
+/*
+* Readings
+*/
+
+/*
+* Devices
+*/
+Route::group(['middleware' => 'auth'], function () {
+    # Create a device
+    Route::get('/devices/create', 'DeviceController@create');
+    Route::post('/devices', 'DeviceController@store');
     
-    Auth::routes();
+    # Query database for all devices
+    Route::get('/devices', 'DeviceController@index');
+
+    # Show a device
+    Route::get('/devices/{slug?}', 'DeviceController@show');
+
+    # Update a device
+    Route::get('/devices/{slug}/edit', 'DeviceController@edit');
+    Route::put('/devices/{slug}', 'DeviceController@update');
+
+    # Delete device confirmation page
+    Route::get('/devices/{slug}/delete', 'DeviceController@delete');
+    # Delete device
+    Route::delete('/devices/{slug}', 'DeviceController@destroy');
+});
+
+Auth::routes();

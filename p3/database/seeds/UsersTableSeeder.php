@@ -15,19 +15,19 @@ class UsersTableSeeder extends Seeder
         # required for p3
         $user = User::updateOrCreate(
             ['email' => 'jill@harvard.edu', 'first_name' => 'Jill', 'last_name' => 'Harvard'],
-            ['password' => Hash::make('helloworld')
-        ]
+            ['password' => Hash::make('helloworld'), 'api_token' => Str::random(60)
+            ]
         );
         
         $user = User::updateOrCreate(
             ['email' => 'jamal@harvard.edu', 'first_name' => 'Jamal', 'last_name' => 'Harvard'],
-            ['password' => Hash::make('helloworld')
+            ['password' => Hash::make('helloworld'),'api_token' => Str::random(60)
         ]
         );
 
         $user = User::updateOrCreate(
             ['email' => 'rsiu01@gmail.com', 'first_name' => 'Richard', 'last_name' => 'Siu'],
-            ['password' => Hash::make('helloworld')
+            ['password' => Hash::make('helloworld'), 'api_token' => Str::random(60)
         ]
         );
     }

@@ -20,7 +20,7 @@ class ReadingsTableSeeder extends Seeder
             $Reading = new Reading();
 
             # Find that device in the devices table
-            $device = Device::where('freezer', '=', ($faker->numberBetween($min=1, $max=20)))->first();
+            $device = Device::where('id', '=', ($faker->numberBetween($min=1, $max=20)))->first();
 
             $Reading->device()->associate($device);
 

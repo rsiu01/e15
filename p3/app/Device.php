@@ -12,4 +12,10 @@ class Device extends Model
         # Define a one-to-many relationship.
         return $this->hasMany('App\Reading');
     }
+
+
+    public static function findBySlug($slug)
+    {
+        return self::where('slug', '=', $slug)->first();
+    }
 }
