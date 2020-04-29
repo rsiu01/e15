@@ -107,6 +107,7 @@ Under Api Routes, I defined a route that calls ReadingController@store, which ha
 	Route::post('/', 'ReadingController@store');
 
 ReadingController@store Method:
+		
 		public function store(Request $request)
 		{
 			
