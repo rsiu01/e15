@@ -1,11 +1,11 @@
-# How to send data from Arduino to Laravel Application and visualize the data with Laravel Charts
+# How to send data from Adafruit Feather HUZZAH ESP8266 to Laravel Application
 
 
 
 
 ### Arduino Set up and Code
-The board I'm using:
-[Adafruit Feather HUZZAH with ESP8266](https://www.adafruit.com/product/2821)
+The board that I'm using is the
+[Adafruit Feather HUZZAH with ESP8266](https://www.adafruit.com/product/2821), a very popular microcontroller that doesn't cost too much and comes with built in WiFi. 
 
 Download the [Arduino IDE]([https://www.arduino.cc/en/Main/Software](https://www.arduino.cc/en/Main/Software))
 
@@ -82,8 +82,7 @@ Example Arduino code [source](https://github.com/bkolicoski/arduino-laravel-comm
 	}
 
 ### Laravel configuration
-Going to based the code off [source](https://github.com/bkolicoski/arduino-laravel-communication/blob/master/Laravel/routes/api.php)
-	  
+Under Api Routes, I defined a route that calls ReadingController@store, which handles data coming from a post request and stores the values in a database. 
 	<?php
 
 	use Illuminate\Http\Request;
@@ -103,15 +102,9 @@ Going to based the code off [source](https://github.com/bkolicoski/arduino-larav
 	    return $request->user();
 	});
 
-	Route::post('/', function (\Illuminate\Http\Request $request) {
-	    \Illuminate\Support\Facades\Storage::append("arduino-log.txt",
-	        "Time: " . now()->format("Y-m-d H:i:s") . ', ' .
-	        "Temperature: " . $request->get("temperature", "n/a") . '°C, ' .
-	        "Humidity: " . $request->get("humidity", "n/a") . '%'
-	    );
-	});
+	Route::post('/', 'ReadingController@store');
 
-Instead of writing to `.txt` file, I'm going to try to incorporate writing to a database. 
+
 
 Api with auth: https://www.toptal.com/laravel/restful-laravel-api-tutorial
 
