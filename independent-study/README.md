@@ -147,4 +147,4 @@ I had hoped I would get Api with authentication working, but I can't seem to fig
 *https://www.toptal.com/laravel/restful-laravel-api-tutorial
 *https://laravel.com/docs/7.x/authentication#introduction
 
-![database readings table](/images/readings.png)
+![database readings table](/assets/images/readings.png)
