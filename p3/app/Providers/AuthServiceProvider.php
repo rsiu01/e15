@@ -33,4 +33,9 @@ class AuthServiceProvider extends ServiceProvider
             return User::where('api_token', $request->api_token)->first();
         });
     }
+
+    protected function guard()
+    {
+        return Auth::guard('guard-name');
+    }
 }
