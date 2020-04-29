@@ -84,6 +84,7 @@ Example Arduino code [source](https://github.com/bkolicoski/arduino-laravel-comm
 
 ### Laravel configuration
 Under Api Routes, I defined a route that calls ReadingController@store, which handles data coming from a post request and stores the values in a database. 
+	
 	<?php
 
 	use Illuminate\Http\Request;
@@ -105,9 +106,7 @@ Under Api Routes, I defined a route that calls ReadingController@store, which ha
 
 	Route::post('/', 'ReadingController@store');
 
-
-	
-
+ReadingController@store Method:
 		public function store(Request $request)
 		{
 			
@@ -137,6 +136,9 @@ Under Api Routes, I defined a route that calls ReadingController@store, which ha
 		}
 	}
 
+
+
+		
 
 
 Api with auth: https://www.toptal.com/laravel/restful-laravel-api-tutorial
