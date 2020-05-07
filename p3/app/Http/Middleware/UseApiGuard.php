@@ -2,6 +2,8 @@
 
 namespace App\Http\Middleware;
 
+use App\Http\Middleware\Auth;
+
 use Closure;
 
 class UseApiGuard

@@ -5,7 +5,7 @@
 @endsection
 
 @section('head')
-    {{--<link href='/css/books/index.css' rel='stylesheet'>--}}
+    <link href='/css/devices/index.css' rel='stylesheet'>
 @endsection
 
 @section('content')
@@ -20,14 +20,21 @@
     </div>
 
     <h1>All Devices</h1>
+
+<br>
+
     @if(count($devices) == 0) 
         No devices have been added yet...
     @else
     <div id='devices'>
         @foreach($devices as $device)
+        
         <a class='device' href='/devices/{{ $device->slug }}'>
             <h3>{{ $device->slug }}</h3>
         </a>
+        
+        <a class='monitor' href='/readings/{{ $device->slug }}'><i class="fas fa-temperature-low"></i></a>
+        
         @endforeach
     </div>
     @endif

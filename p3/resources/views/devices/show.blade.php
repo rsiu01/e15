@@ -44,6 +44,8 @@
 
 
 <ul class='deviceActions'>
+    
+    <li><a href='/readings/{{ $device->slug }}'><i class="fas fa-temperature-low"></i> Monitor</a>
     <li><a href='/devices/{{ $device->slug }}/edit'><i class="fa fa-edit"></i> Edit</a>
     <li><a href='/devices/{{ $device->slug }}/delete'><i class="fa fa-trash"></i> Delete</a>
 </ul>

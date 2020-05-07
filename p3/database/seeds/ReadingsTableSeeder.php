@@ -16,7 +16,7 @@ class ReadingsTableSeeder extends Seeder
         # some seeder by faker to developing show view
         $faker = Faker\Factory::create();
 
-        for ($i = 0; $i < 100; $i++) {
+        for ($i = 0; $i < 50; $i++) {
             $Reading = new Reading();
 
             # Find that device in the devices table
@@ -29,6 +29,9 @@ class ReadingsTableSeeder extends Seeder
             $Reading->humidity = $faker->randomFloat($nbMaxDecimals = 2, $min=50, $max=98);
 
             $Reading->save();
+
+            # readings seeds executes too fast; wait one second to generate more unique timestamps
+            sleep(1);
         }
     }
 }

@@ -1,0 +1,17 @@
+
+#devices{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.device{
+    display: inline-flex;
+    padding: 5px;
+}
+
+.monitor{
+    display: inline-flex;
+    padding: 5 px;
+}

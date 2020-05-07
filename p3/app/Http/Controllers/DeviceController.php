@@ -103,7 +103,7 @@ class DeviceController extends Controller
             'low_temperature' => 'required|numeric',
             'high_temperature' => 'required|numeric',
             'calibration_offset' => 'required|numeric',
-            'location' => 'require|string'
+            'location' => 'required|string'
           
         ]);
 
@@ -126,7 +126,7 @@ class DeviceController extends Controller
         ]);
     }
 
-
+    # delete device
     public function delete($slug)
     {
         $device = Device::findBySlug($slug);

@@ -4,31 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Reading;
+use App\Charts\ReadingChart;
+use App\Device;
 
 class ReadingController extends Controller
 {
-    public function __construct()
-    {
-        // We set the guard api as default driver
-        auth()->setDefaultDriver('api');
-    }
+   
     /**
      * GET /readings
      * Show all the readings in the database
      */
     public function index()
     {
-        $reading = Reading::orderBy('created_at')->get();
- 
+        # retreive temperature and humidity values from database
+        $temperature = Reading::orderBy('created_at')->pluck('temperature', 'created_at');
+        $humidity = Reading::orderBy('created_at')->pluck('humidity', 'created_at');
+
+        # create chart using laravel charts
+        $chart = new ReadingChart;
+        $chart->labels($humidity->keys());
+        $chart->dataset('Temperature °C', 'line', $temperature->values())->color('Red');
+        $chart->dataset('Humidity %RH', 'line', $humidity->values())->backgroundColor('rgb(3, 124, 255, .4)');
         
- 
-        # Or, filter out the new readings from the existing $readings Collection
-        $newReading = $reading->sortByDesc('created_at')->take(20);
-         
-        return view('reading.index')->with([
-             'reading' => $reading,
-             'newReading' => $newReading
-         ]);
+        
+
+        return view('readings.index', compact('chart'));
     }
 
     public function store(Request $request)
@@ -57,5 +57,29 @@ class ReadingController extends Controller
         $newReading->humidity = $request->humidity;
        
         $newReading->save();
+    }
+
+    # Show all readings from a device
+    public function show($slug)
+    {
+        # get device details from database to send over to view
+        $device = Device::where('slug', '=', $slug)->first();
+
+        # retreive temperature and humidity values from database
+        $temperature = Reading::orderBy('created_at')->where('device_id', '=', $slug)->pluck('temperature', 'created_at');
+        $humidity = Reading::orderBy('created_at')->where('device_id', '=', $slug)->pluck('humidity', 'created_at');
+
+        # create chart using laravel charts
+        $chart = new ReadingChart;
+        $chart->labels($humidity->keys());
+        $chart->dataset('Temperature °C', 'line', $temperature->values())->color('Red');
+        $chart->dataset('Humidity %RH', 'line', $humidity->values())->backgroundColor('rgb(3, 124, 255, .4)');
+        
+        
+
+        return view('readings.show', compact('chart'))->with([
+            'slug' => $slug,
+            'device' => $device
+        ]);
     }
 }
