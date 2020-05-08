@@ -17,8 +17,8 @@ class ReadingController extends Controller
     public function index()
     {
         # retreive temperature and humidity values from database
-        $temperature = Reading::orderBy('created_at')->pluck('temperature', 'created_at');
-        $humidity = Reading::orderBy('created_at')->pluck('humidity', 'created_at');
+        $temperature = Reading::orderBy('created_at')->pluck('temperature', 'created_at')->take(100);
+        $humidity = Reading::orderBy('created_at')->pluck('humidity', 'created_at')->take(100);
 
         # create chart using laravel charts
         $chart = new ReadingChart;
@@ -60,14 +60,21 @@ class ReadingController extends Controller
     }
 
     # Show all readings from a device
-    public function show($slug)
+    public function show(Request $request, $slug)
     {
+        $number_readings = $request->number_readings;
+        
         # get device details from database to send over to view
         $device = Device::where('slug', '=', $slug)->first();
 
         # retreive temperature and humidity values from database
-        $temperature = Reading::orderBy('created_at')->where('device_id', '=', $slug)->pluck('temperature', 'created_at');
-        $humidity = Reading::orderBy('created_at')->where('device_id', '=', $slug)->pluck('humidity', 'created_at');
+        $temperature = Reading::orderBy('created_at')->where('device_id', '=', $slug)
+                                                    ->pluck('temperature', 'created_at')
+                                                    ->take($number_readings);
+        
+        $humidity = Reading::orderBy('created_at')->where('device_id', '=', $slug)
+                                                    ->pluck('humidity', 'created_at')
+                                                    ->take($number_readings);
 
         # create chart using laravel charts
         $chart = new ReadingChart;
@@ -79,7 +86,8 @@ class ReadingController extends Controller
 
         return view('readings.show', compact('chart'))->with([
             'slug' => $slug,
-            'device' => $device
+            'device' => $device,
+            'number_readings' => $number_readings
         ]);
     }
 }

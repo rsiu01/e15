@@ -33,5 +33,9 @@ https://www.nicepng.com/maxp/u2w7t4r5w7q8i1t4/
 
 https://www.w3schools.com/charsets/ref_utf_letterlike.asp
 
+https://charts.erik.cat/
+
+https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list
+
 ## Notes for instructor
 *Any notes for me to refer to while grading; if none, omit this section*

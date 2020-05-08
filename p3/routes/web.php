@@ -48,7 +48,7 @@ Route::get('/debug', function () {
 Route::group(['middleware' => 'auth'], function () {
     # Create a device
     #Route::get('/devices/create', 'DeviceController@create');
-    #Route::post('/devices', 'DeviceController@store');
+    Route::post('/readings/{slug?}', 'ReadingController@show');
     
     # Query database for all readings
     Route::get('/readings', 'ReadingController@index');
