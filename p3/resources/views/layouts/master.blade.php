@@ -28,7 +28,7 @@
 
                  @if(Auth::user())
                 <li><a href='/devices'>All devices</a></li>
-                <li><a href='/devices/create'>Add a Device</a></li>
+                <li><a dusk='add-device-link' href='/devices/create'>Add a Device</a></li>
                 <li><a href='/readings'>Readings</a></li>
                 @endif
 
