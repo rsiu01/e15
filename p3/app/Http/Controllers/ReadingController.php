@@ -17,8 +17,8 @@ class ReadingController extends Controller
     public function index()
     {
         # retreive temperature and humidity values from database
-        $temperature = Reading::orderBy('created_at')->pluck('temperature', 'created_at')->take(100);
-        $humidity = Reading::orderBy('created_at')->pluck('humidity', 'created_at')->take(100);
+        $temperature = Reading::orderBy('created_at', 'desc')->pluck('temperature', 'created_at')->take(100);
+        $humidity = Reading::orderBy('created_at', 'desc')->pluck('humidity', 'created_at')->take(100);
 
         # create chart using laravel charts
         $chart = new ReadingChart;
@@ -62,19 +62,37 @@ class ReadingController extends Controller
     # Show all readings from a device
     public function show(Request $request, $slug)
     {
-        $number_readings = $request->number_readings;
+        # get page value from request
+        $page = $request->page ?? 1;
+
+        # get number of readings to load on chart
+        $numberReadings = $request->numberReadings ?? 100; # default to 100
         
         # get device details from database to send over to view
         $device = Device::where('slug', '=', $slug)->first();
 
-        # retreive temperature and humidity values from database
-        $temperature = Reading::orderBy('created_at')->where('device_id', '=', $slug)
-                                                    ->pluck('temperature', 'created_at')
-                                                    ->take($number_readings);
+        # get total number of readings
+        $countReadings = Reading::where('device_id', '=', $slug)->count();
         
-        $humidity = Reading::orderBy('created_at')->where('device_id', '=', $slug)
-                                                    ->pluck('humidity', 'created_at')
-                                                    ->take($number_readings);
+        # calculates number of pages needed in view
+        $numberPages = $countReadings/$numberReadings;
+
+        # offset query results to load into pages
+        $offsetPage = $numberReadings * ($page - 1);
+        
+        # retreive temperature and humidity values from database
+        $temperature = Reading::orderBy('created_at', 'desc')->where('device_id', '=', $slug)
+                                                     ->limit($numberReadings) # limit query to $number_readings
+                                                     ->offset($offsetPage) # for paging through readings
+                                                     ->pluck('temperature', 'created_at');
+                                                    
+        
+   
+
+        $humidity = Reading::orderBy('created_at', 'desc')->where('device_id', '=', $slug)
+                                                  ->limit($numberReadings)
+                                                  ->offset($offsetPage) # for paging through data
+                                                  ->pluck('humidity', 'created_at');
 
         # create chart using laravel charts
         $chart = new ReadingChart;
@@ -87,7 +105,10 @@ class ReadingController extends Controller
         return view('readings.show', compact('chart'))->with([
             'slug' => $slug,
             'device' => $device,
-            'number_readings' => $number_readings
+            'numberReadings' => $numberReadings,
+            'numberPages' => $numberPages,
+            'page' => $page
+            
         ]);
     }
 }

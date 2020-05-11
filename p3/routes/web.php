@@ -13,9 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.welcome');
-});
+Route::get('/', 'PageController@welcome');
+
 
 Route::get('/debug', function () {
     $debug = [
@@ -42,6 +41,8 @@ Route::get('/debug', function () {
     dump($debug);
 });
 
+
+
 /*
 * Readings
 */
@@ -50,11 +51,13 @@ Route::group(['middleware' => 'auth'], function () {
     #Route::get('/devices/create', 'DeviceController@create');
     Route::post('/readings/{slug?}', 'ReadingController@show');
     
+    
     # Query database for all readings
     Route::get('/readings', 'ReadingController@index');
 
     # Show readings for a device
     Route::get('/readings/{slug?}', 'ReadingController@show');
+
 
     # Update a device
     #Route::get('/devices/{slug}/edit', 'DeviceController@edit');

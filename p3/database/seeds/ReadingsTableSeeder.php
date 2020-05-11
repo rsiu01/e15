@@ -16,22 +16,23 @@ class ReadingsTableSeeder extends Seeder
         # some seeder by faker to developing show view
         $faker = Faker\Factory::create();
 
-        for ($i = 0; $i < 50; $i++) {
+        for ($i = 0; $i < 50000; $i++) {
             $Reading = new Reading();
 
             # Find that device in the devices table
-            $device = Device::where('id', '=', ($faker->numberBetween($min=1, $max=20)))->first();
+            $device = Device::where('id', '=', ($faker->numberBetween($min=1, $max=1)))->first();
 
             $Reading->device()->associate($device);
+
+            # having to set timezone to account for daylight savings time
+            # https://github.com/fzaninotto/Faker/issues/914#issuecomment-565539803
+            $Reading->created_at = $faker->unique()->dateTimeBetween($startDate = '-2 years ', $endDate = 'now', $timezone = 'America/New_York');
 
             $Reading->temperature = $faker->randomFloat($nbMaxDecimals = 2, $min= 36, $max=38);
 
             $Reading->humidity = $faker->randomFloat($nbMaxDecimals = 2, $min=50, $max=98);
 
             $Reading->save();
-
-            # readings seeds executes too fast; wait one second to generate more unique timestamps
-            sleep(1);
         }
     }
 }

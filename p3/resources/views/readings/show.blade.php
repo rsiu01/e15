@@ -5,7 +5,7 @@
 @endsection
 
 @section('head')
-    {{--<link href='/css/books/index.css' rel='stylesheet'>--}}
+    <link href='/css/readings/show.css' rel='stylesheet'>
 @endsection
 <head>
     
@@ -19,18 +19,25 @@
     @csrf
     {{-- Using a little bit of JavaScript to submit form when dropdown selection is changed --}}
     {{-- https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list --}}
-    <select name="number_readings" id="number_readings" onchange="this.form.submit()">
-        <option selected="selected">{{ old('number_readings',$number_readings) }}</option>
+    
+    <label for="numberReadings">Readings per page:</label>
+    <select name="numberReadings" id="numberReadings" onchange="this.form.submit()">
+        <option selected="selected">{{ old('numberReadings',$numberReadings) }}</option>
         <option value="50">50</option>
         <option value="100">100</option>
-        <option value="1000">1000</option>
-        <option value="10000">10000</option>
-        <option value="100000">100000</option>
-        <option value="1000000">1000000</option>
+        <option value="500">500</option>
+        <option value="1000">1000</option> {{-- 1000 max; more may hinder performance --}}
     </select>
-    
+
+    <label for="page">Page:</label>
+    <select name="page" id="page" onchange="this.form.submit()">
+        <option selected="selected">{{ old('page' , $page) }}</option>
+        @for($i = 1; $i <= $numberPages; $i++)
+            <option value="{{ $i }}" >{{ $i }}</option>
+        @endfor
+    </select>      
 </form>
-     
+
        
     
 
@@ -39,6 +46,7 @@
     {{-- ChartScript --}}
     @if($chart)
     {!! $chart->script() !!}
+
          
     @else 
     No readings have been recorded yet...

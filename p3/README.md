@@ -37,5 +37,6 @@ https://charts.erik.cat/
 
 https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list
 
+https://github.com/fzaninotto/Faker/issues/914#issuecomment-565539803
 ## Notes for instructor
 *Any notes for me to refer to while grading; if none, omit this section*
