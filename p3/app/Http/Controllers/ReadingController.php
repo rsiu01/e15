@@ -74,6 +74,8 @@ class ReadingController extends Controller
         # get total number of readings
         $countReadings = Reading::where('device_id', '=', $slug)->count();
         
+        
+
         # calculates number of pages needed in view
         $numberPages = $countReadings/$numberReadings;
 

@@ -119,6 +119,9 @@ h3 {
 /*----------------------------------------------------
 Forms
 -----------------------------------------------------*/
+
+
+
 label,
 legend {
     display: block;
@@ -130,6 +133,7 @@ legend {
     font-weight: bold;
     text-transform: uppercase;
 }
+
 
 input[type=text],
 input[type=email],

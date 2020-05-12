@@ -30,6 +30,6 @@ $factory->define(Device::class, function (Faker $faker) {
 
         'location' => $location,
 
-        $alarm = true,
+        'alarm' => $alarm,
     ];
 });

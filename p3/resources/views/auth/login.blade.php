@@ -1,10 +1,16 @@
 @extends('layouts.master')
 
+@section('head')
+    <link href='/css/auth/login.css' rel='stylesheet'>
+@endsection
+
 @section('content')
 
     <h1 dusk='login-heading'> Login</h1>
+<div class='login'>
 
     Don’t have an account? <a dusk='register-link' href='/register'>Register here...</a>
+
 
     <form method='POST' action='{{ route('login') }}'>
 
@@ -27,5 +33,6 @@
         <a class='btn btn-link' href='{{ route('password.request') }}'>Forgot Your Password?</a>
 
     </form>
+</div>
 
 @endsection

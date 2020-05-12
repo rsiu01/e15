@@ -4,11 +4,15 @@
     Add a device
 @endsection
 
+@section('head')
+    <link href='/css/devices/create.css' rel='stylesheet'>
+@endsection
+
 @section('content')
 
-    <h1>Add a device</h1>
+    <h1>Add Device</h1>
 
-
+<div class='deviceCreate'>
     <form method='POST' action='/devices'>
         <div class='details'>* Required fields</div>
         {{ csrf_field() }}
@@ -52,6 +56,6 @@
         <input dusk='submit-button' type='submit' class='btn btn-primary' value='Add'>
 
     </form>
- 
+</div>
    
 @endsection

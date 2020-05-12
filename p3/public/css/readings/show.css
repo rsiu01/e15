@@ -1,0 +1,25 @@
+
+.paginateForm{
+    
+    display: inline-flex;
+    padding-top: 15px;
+    align-items: center;
+    text-align: center;
+    
+}
+
+.paginateForm label{
+   
+    padding-left: 30px;
+    padding-right: 8px;
+    padding-bottom: 16px;
+  
+}
+
+
+.chartContainer{
+    
+    min-height: 700px;
+    padding-bottom: 30px;
+}
+

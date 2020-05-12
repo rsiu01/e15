@@ -16,11 +16,11 @@ class ReadingsTableSeeder extends Seeder
         # some seeder by faker to developing show view
         $faker = Faker\Factory::create();
 
-        for ($i = 0; $i < 50000; $i++) {
+        for ($i = 0; $i < 10000; $i++) {
             $Reading = new Reading();
 
             # Find that device in the devices table
-            $device = Device::where('id', '=', ($faker->numberBetween($min=1, $max=29)))->first();
+            $device = Device::where('id', '=', ($faker->numberBetween($min=1, $max=5)))->first();
 
             $Reading->device()->associate($device);
 
@@ -30,7 +30,7 @@ class ReadingsTableSeeder extends Seeder
 
             $Reading->temperature = $faker->randomFloat($nbMaxDecimals = 2, $min= 36, $max=38);
 
-            $Reading->humidity = $faker->randomFloat($nbMaxDecimals = 2, $min=50, $max=98);
+            $Reading->humidity = $faker->randomFloat($nbMaxDecimals = 2, $min=65, $max=98);
 
             $Reading->save();
         }

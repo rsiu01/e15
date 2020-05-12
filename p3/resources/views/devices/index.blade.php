@@ -15,6 +15,7 @@
         <ul>
         @foreach($newDevices as $device) 
             <li><a href='/devices/{{ $device->slug }}'>{{ $device->slug }}</a></li>
+            
         @endforeach
         </ul>
     </div>
@@ -26,17 +27,17 @@
     @if(count($devices) == 0) 
         No devices have been added yet...
     @else
-    <div id='devices'>
-        @foreach($devices as $device)
-        
-        <a class='device' href='/devices/{{ $device->slug }}'>
-            <h3>{{ $device->slug }}</h3>
-        </a>
-        
-        <a class='monitor' href='/readings/{{ $device->slug }}'><i class="fas fa-temperature-low"></i></a>
-        
-        @endforeach
-    </div>
+        <div id='devicesBox'>
+         
+            @foreach($devices as $device)
+                
+                <a class='device' href='/devices/{{ $device->slug }}'>{{ $device->slug }}</a>
+                    
+                <a class='monitor' href='/readings/{{ $device->slug }}'><i class="fas fa-temperature-low"></i></a>
+                
+            @endforeach
+         
+        </div>
     @endif
 
 @endsection

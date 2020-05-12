@@ -17,7 +17,7 @@
     <form method='POST' action='/devices/{{ $device->slug }}'>
         {{ method_field('delete') }}
         {{ csrf_field() }}
-        <input type='submit' value='Yes, delete it!' class='btn btn-danger btn-small'>
+        <input dusk='confirm-delete-button' type='submit' value='Yes, delete it!' class='btn btn-danger btn-small'>
     </form>
 
     <p class='cancel'>

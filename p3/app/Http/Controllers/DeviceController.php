@@ -99,7 +99,7 @@ class DeviceController extends Controller
         $device = Device::where('slug', '=', $slug)->first();
 
         $request->validate([
-            'slug' => 'required|unique:devices,slug,'.$device->id.'|alpha_dash',
+            'slug' => 'required|alpha_dash',
             'low_temperature' => 'required|numeric',
             'high_temperature' => 'required|numeric',
             'calibration_offset' => 'required|numeric',
@@ -154,7 +154,8 @@ class DeviceController extends Controller
         $device->delete();
 
         return redirect('/devices')->with([
-            'flash-alert' => '“' . $device->slug . '” was removed.'
+            'flash-alert' => '“' . $device->slug . '” was removed.',
+            'device' => $device
         ]);
     }
 }

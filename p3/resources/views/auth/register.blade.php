@@ -1,8 +1,13 @@
 @extends('layouts.master')
 
+@section('head')
+    <link href='/css/auth/register.css' rel='stylesheet'>
+@endsection
+
 @section('content')
     <h1 dusk='register-heading' >Register</h1>
 
+<div class='register'>
     Already have an account? <a href='/login'>Login here...</a>
 
     <form method='POST' action='{{ route('register') }}'>
@@ -30,4 +35,5 @@
 
         <button dusk='register-button' type='submit' class='btn btn-primary'>Register</button>
     </form>
+</div>
 @endsection

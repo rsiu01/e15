@@ -1,17 +1,23 @@
 
-#devices{
+#devicesBox{
+    width: 90%;
+    margin: auto;
+    padding-bottom: 30px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    text-align: center;
+    
 }
 
 .device{
     display: inline-flex;
-    padding: 5px;
+    padding: 2px;
+    padding-inline-start: 15px;
 }
 
 .monitor{
     display: inline-flex;
-    padding: 5 px;
+    padding: 2px;
+    padding-bottom: 10px;
+    padding-inline-end: 15 px;
 }

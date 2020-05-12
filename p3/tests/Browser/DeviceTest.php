@@ -16,7 +16,7 @@ class DeviceTest extends DuskTestCase
     /**
      * Tests adding a device
      *
-     * @group runThisTest
+     *
      */
     public function testAddDevice()
     {
@@ -24,13 +24,13 @@ class DeviceTest extends DuskTestCase
             $user = factory(User::class)->create();
             $slug = $this->faker->word;
             
-            # make sure to login first before testing add device
+            # make sure to login first before testing
             $browser->logout()
                     ->visit('/login')
                     ->type('@email-input', $user->email)
                     ->type('@password-input', 'helloworld')
                     ->click('@login-button')
-
+            # test begins
                     ->visit('/devices')
                     ->click('@add-device-link')
                     ->type('@slug-input', $slug)
@@ -47,25 +47,56 @@ class DeviceTest extends DuskTestCase
     /**
     * Tests deleting a device
     *
-    * @group runThisTest
+    *
     */
-    public function testAddDevice()
+    public function testDeleteDevice()
     {
         $this->browse(function (Browser $browser) {
+            $user = factory(User::class)->create();
             $device = factory(Device::class)->create();
-             
-             
-            # make sure to login first before testing add device
-            $browser->visit('/devices')
-                     ->click('@add-device-link')
-                     ->type('@slug-input', $slug)
-                     ->type('@location-input', 'N/A')
-                     ->type('@low_temperature-input', '35')
-                     ->type('@high_temperature-input', '39')
-                     ->type('@calibration_offset-input', '0')
-                     ->scrollTo('@submit-button')
-                     ->click('@submit-button')
-                     ->assertSee($slug);
+            $slug = $device->slug;
+           
+            
+            # make sure to login first before testing
+            $browser->logout()
+                    ->loginAs($user->id)
+            
+            # delete test begins
+
+                    ->visit('/devices/'.$slug)
+                    ->click('@delete-button')
+                    ->click('@confirm-delete-button')
+                    ->assertSee('“' . $slug . '” was removed.');
+        });
+    }
+
+    /**
+    * Tests editing a device
+    *
+    *
+    */
+    public function testEditDevice()
+    {
+        $this->browse(function (Browser $browser) {
+            $user = factory(User::class)->create();
+            $device = factory(Device::class)->create();
+            $slug = $device->slug;
+            $newslug = $this->faker->word;
+            $newoffset = $this->faker->randomDigit;
+           
+            
+            # make sure to login first before testing
+            $browser->logout()
+                    ->loginAs($user->id)
+            
+            # edit test begins
+
+                    ->visit('/devices/'.$slug)
+                    ->click('@edit-button')
+                    ->type('@calibration_offset-input', $newoffset)
+                    ->scrollTo('@submit-button')
+                    ->click('@submit-button')
+                    ->assertSee('Your changes were saved.');
         });
     }
 }

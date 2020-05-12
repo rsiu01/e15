@@ -1,0 +1,38 @@
+.deviceHeader{
+    padding-bottom: 10px;
+}
+
+
+
+.deviceShow table {
+    margin: auto;
+}
+
+
+.deviceShow th {
+    padding: 5px;
+    margin: auto;
+    width: 30%;
+    text-align: right;
+    border: 1px solid rgba(0, 132, 255, 0.5);
+}
+
+.deviceShow td {
+    padding: 5px;
+    margin: auto;
+    width: 40%;
+    text-align: left;
+    font-weight: bold;
+    border: 1px solid  rgba(0, 132, 255, 0.5);
+}
+
+
+
+.deviceActions { 
+    text-align: center;
+    padding: 30px;  
+}
+
+.deviceActions a {
+    padding: 10px;
+}
