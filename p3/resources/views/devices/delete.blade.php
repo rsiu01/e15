@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('head')
-    {{--<link href='/css/books/delete.css' rel='stylesheet'>--}}
+    
 @endsection
 
 @section('title')

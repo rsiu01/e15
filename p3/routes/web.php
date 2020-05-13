@@ -13,60 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+# Welcome page
 Route::get('/', 'PageController@welcome');
-
-
-Route::get('/debug', function () {
-    $debug = [
-        'Environment' => App::environment(),
-    ];
-
-    /*
-    The following commented out line will print your MySQL credentials.
-    Uncomment this line only if you're facing difficulties connecting to the
-    database and you need to confirm your credentials. When you're done
-    debugging, comment it back out so you don't accidentally leave it
-    running on your production server, making your credentials public.
-    */
-    #$debug['MySQL connection config'] = config('database.connections.mysql');
-
-    try {
-        $databases = DB::select('SHOW DATABASES;');
-        $debug['Database connection test'] = 'PASSED';
-        $debug['Databases'] = array_column($databases, 'Database');
-    } catch (Exception $e) {
-        $debug['Database connection test'] = 'FAILED: '.$e->getMessage();
-    }
-
-    dump($debug);
-});
-
-
 
 /*
 * Readings
 */
 Route::group(['middleware' => 'auth'], function () {
-    # Create a device
-    #Route::get('/devices/create', 'DeviceController@create');
+    # Get paginate variables from post request
     Route::post('/readings/{slug?}', 'ReadingController@show');
-    
-    
-    # Query database for all readings
-    Route::get('/readings', 'ReadingController@index');
 
     # Show readings for a device
     Route::get('/readings/{slug?}', 'ReadingController@show');
-
-
-    # Update a device
-    #Route::get('/devices/{slug}/edit', 'DeviceController@edit');
-    #Route::put('/devices/{slug}', 'DeviceController@update');
-
-    # Delete device confirmation page
-    #Route::get('/devices/{slug}/delete', 'DeviceController@delete');
-    # Delete device
-    #Route::delete('/devices/{slug}', 'DeviceController@destroy');
 });
 
 /*
@@ -85,7 +43,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     # Update a device
     Route::get('/devices/{slug}/edit', 'DeviceController@edit');
-    Route::put('/devices/{slug}', 'DeviceController@update');
+    Route::put('/devices/{slug?}/', 'DeviceController@update');
 
     # Delete device confirmation page
     Route::get('/devices/{slug}/delete', 'DeviceController@delete');
@@ -93,4 +51,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('/devices/{slug}', 'DeviceController@destroy');
 });
 
+# Auth routes
 Auth::routes();

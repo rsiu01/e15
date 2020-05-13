@@ -20,6 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 
-# Attaching auth middleware to API post route and specifiying guard as auth:api
-# https://laravel.com/docs/7.x/authentication#adding-custom-user-providers
+# /API post for Arduino devices
 Route::post('/', 'ReadingController@store');

@@ -22,7 +22,7 @@ class DeviceTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $user = factory(User::class)->create();
-            $slug = $this->faker->word;
+            $slug = $this->faker->unique()->word;
             
             # make sure to login first before testing
             $browser->logout()
@@ -40,6 +40,7 @@ class DeviceTest extends DuskTestCase
                     ->type('@calibration_offset-input', '0')
                     ->scrollTo('@submit-button')
                     ->click('@submit-button')
+                    ->scrollTo('@slug-input')
                     ->assertSee($slug);
         });
     }
@@ -81,7 +82,6 @@ class DeviceTest extends DuskTestCase
             $user = factory(User::class)->create();
             $device = factory(Device::class)->create();
             $slug = $device->slug;
-            $newslug = $this->faker->word;
             $newoffset = $this->faker->randomDigit;
            
             
@@ -96,7 +96,8 @@ class DeviceTest extends DuskTestCase
                     ->type('@calibration_offset-input', $newoffset)
                     ->scrollTo('@submit-button')
                     ->click('@submit-button')
-                    ->assertSee('Your changes were saved.');
+                    ->scrollTo('@slug-input')
+                    ->assertPresent('@flash-alert');
         });
     }
 }

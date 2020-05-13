@@ -40,6 +40,7 @@ class AuthTest extends DuskTestCase
             $browser->visit('/login')
                      ->click('@register-link')
                      ->assertVisible('@register-heading')
+                     ->scrollTo('@register-heading')
                      ->type('@first_name-input', $first_name)
                      ->type('@last_name-input', $last_name)
                      ->type('@email-input', $this->faker->safeEmail())
@@ -70,7 +71,7 @@ class AuthTest extends DuskTestCase
                      ->type('password_confirmation', 'helloworld')
                      ->scrollTo('@register-button')
                      ->click('@register-button')
-                     ->assertPresent('@error-field-email')
+                     ->assertPresent('@error-field')
                      ->assertSee('The email has already been taken.');
         });
     }
@@ -92,20 +93,35 @@ class AuthTest extends DuskTestCase
         });
     }
 
-     /**
-     *
-     */
-     public function testLoginValidation()
-     {
-         $this->browse(function (Browser $browser) {
-             $user = factory(User::class)->create();
+    /**
+    *
+    */
+    public function testLoginValidation()
+    {
+        $this->browse(function (Browser $browser) {
+            $user = factory(User::class)->create();
  
-             $browser->logout()
+            $browser->logout()
                      ->visit('/login')
                      ->type('@email-input', $user->email)
                      ->type('@password-input', 'this-is-the-wrong-password')
                      ->click('@login-button')
                      ->assertSee('These credentials do not match our records.');
-         });
-     }
+        });
+    }
+
+    /*
+    *  test Jim and Jamal users
+    *
+    */
+    public function testJillandJamal()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/login')
+            ->type('@email-input', 'jill@harvard.edu')
+            ->type('@password-input', 'helloworld')
+            ->click('@login-button')
+            ->assertSee('Jill');
+        });
+    }
 }

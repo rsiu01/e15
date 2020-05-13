@@ -14,13 +14,12 @@
         {{ csrf_field() }}
 
         <label for='first_name'>First Name</label>
-        <input dusk='first_name-input' id='first_name' type='text' name='first_name' value='{{ old('first_name') }}' required autofocus>
+        <input dusk='first_name-input' id='first_name' type='text' name='first_name' value='{{ old('first_name') }}' required >
         @include('includes.error-field', ['fieldName' => 'first_name'])
 
          <label for='last_name'>Last Name</label>
-        <input dusk='last_name-input' id='last_name' type='text' name='last_name' value='{{ old('last_name') }}' required autofocus>
+        <input dusk='last_name-input' id='last_name' type='text' name='last_name' value='{{ old('last_name') }}' required >
         @include('includes.error-field', ['fieldName' => 'last_name'])
-
 
         <label for='email'>E-Mail Address</label>
         <input dusk='email-input' id='email' type='email' name='email' value='{{ old('email') }}' required>
