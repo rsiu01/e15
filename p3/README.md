@@ -19,24 +19,24 @@
 
 ## Outside resources
 
-+https://www.nicepng.com/maxp/u2w7t4r5w7q8i1t4/
++ https://www.nicepng.com/maxp/u2w7t4r5w7q8i1t4/
 
-+https://www.w3schools.com/charsets/ref_utf_letterlike.asp
++ https://www.w3schools.com/charsets/ref_utf_letterlike.asp
 
-+https://kit.fontawesome.com/a076d05399.js
++ https://kit.fontawesome.com/a076d05399.js
 
-+https://charts.erik.cat/
++ https://charts.erik.cat/
 
-+https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js
++ https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js
 
-+https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list
++ https://stackoverflow.com/questions/7231157/how-to-submit-form-on-change-of-dropdown-list
 
-+https://github.com/fzaninotto/Faker/issues/914#issuecomment-565539803
++ https://github.com/fzaninotto/Faker/issues/914#issuecomment-565539803
 ## Notes for instructor
-*Future features:
-+Laravel Sanctum API Token Based Authentication 
+* Future features:
++ Laravel Sanctum API Token Based Authentication 
 
-+Create different user roles so that certain actions can be limit to certain groups of users. 
++ Create different user roles so that certain actions can be limit to certain groups of users. 
 
 
 
