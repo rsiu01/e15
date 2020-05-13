@@ -13,7 +13,6 @@
 
   
 ## Database summary
-*Describe the tables and relationships used in your database. Delete the examples below and replace with your own info.*
 
 + My application has 3 tables in total (`users`, `devices`, `readings`)
 + There's a one-to-many relationship between `devices` and `readings`
@@ -34,4 +33,10 @@
 
 +https://github.com/fzaninotto/Faker/issues/914#issuecomment-565539803
 ## Notes for instructor
+*Future features:
++Laravel Sanctum API Token Based Authentication 
+
++Create different user roles so that certain actions can be limit to certain groups of users. 
+
+
 
